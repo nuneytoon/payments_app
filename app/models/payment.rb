@@ -1,5 +1,6 @@
 class Payment < ApplicationRecord
   belongs_to :invoice
+  has_many :refunds, dependent: :destroy
 
   validates :amount_cents, presence: true, numericality: { greater_than: 0 }
 
