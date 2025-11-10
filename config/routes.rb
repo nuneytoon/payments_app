@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :invoices, only: [] do
-        resources :payments, only: [ :create ]
+        resources :payments, only: [ :create ] do
+          resources :refunds, only: [ :create ]
+        end
       end
     end
   end

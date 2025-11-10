@@ -4,7 +4,8 @@ module Api
       before_action :set_invoice
 
       def create
-        payment = @invoice.payments.create!(payment_params)
+        processor = PaymentProcessor.new(invoice: @invoice, amount_cents: payment_params[:amount_cents])
+        payment = processor.call
         render json: { invoice: @invoice.reload.as_json(include: :payments) }
       end
 
