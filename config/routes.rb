@@ -14,6 +14,10 @@ Rails.application.routes.draw do
           resources :refunds, only: [ :create ]
         end
       end
+
+      namespace :reports do
+        get 'revenue', to: 'revenue#index'
+      end
     end
   end
 end
